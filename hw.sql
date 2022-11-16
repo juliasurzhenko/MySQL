@@ -1,0 +1,122 @@
+-- #1
+-- select * from bank.client where length(firstname) < 6;
+-- #2
+-- select * from bank.department where DepartmentCity = 'lviv';
+-- #3
+-- select * from bank.client where education = 'high' order by lastname;
+-- #4
+-- select * from bank.application order by  idApplication desc limit 5;
+-- #5
+-- select * from bank.client where lastname like '%ov' or '%ova';
+-- #6
+-- select * from bank.client inner join bank.department d on 
+-- bank.client.Department_idDepartment = d.idDepartment
+-- where DepartmentCity = 'kyiv';
+-- #7 ?????
+-- #8
+-- select firstname, lastname, passport, city, age, application.sum 
+-- from bank.client join bank.application on 
+-- client.idclient = application.client_idclient
+-- where sum >5000;
+-- #9
+-- select count(idclient) from bank.client where Department_idDepartment = 2 or
+-- Department_idDepartment = 5;
+-- #10
+-- select max(Sum), client_idclient from bank.application
+-- group by Client_idClient;
+-- #11
+-- select count(idapplication), client_idClient from
+-- bank.application group by Client_idClient;
+-- #12
+-- select max(Sum) from bank.application;
+-- select min(Sum) from bank.application;
+-- #13 
+ -- select count(application.idApplication), FirstName, LastName from client
+ -- join application on client.idClient = application.Client_idClient
+ -- where education = 'high' group by idclient;
+-- #14 
+-- select avg(sum) as avg, firstname, lastname from client
+-- join application on Client.idClient = application.Client_idClient
+-- group by idClient
+-- order by avg desc
+-- limit 1;
+-- #15 
+-- select sum(Sum) as MaxSum, d.DepartmentCity
+-- from application a
+-- join client c on a.Client_idClient = c.idClient
+-- join department d on c.Department_idDepartment = d.idDepartment
+-- group by DepartmentCity order by MaxSum desc limit 1;
+-- #16 
+-- select max(Sum) as MaxSum, d.DepartmentCity
+-- from application a
+-- join client c on a.Client_idClient = c.idClient
+-- join department d on c.Department_idDepartment = d.idDepartment;
+-- №17 
+-- update application a
+-- join client c on a.Client_idClient = c.idClient
+-- set a.Sum = 6000
+-- where c.Education = 'high' limit 10;
+-- select * from client 
+-- join application on client.idClient = application.Client_idClient;
+-- #18
+-- update client c
+-- join department d on c.Department_idDepartment = d.idDepartment
+-- set City = 'Kyiv'
+-- where DepartmentCity = 'Kyiv';
+-- #19
+ -- delete from application where CreditState = 'Returned';
+-- #20 ??
+-- #21
+-- select sum(Sum) as summ
+-- from department
+-- join client on idDepartment = Department_idDepartment
+-- join application on idClient = Client_idClient
+-- where DepartmentCity = 'Lviv'
+-- group by idDepartment
+-- having summ > 5000;
+-- select idDepartment, FirstName, LastName, DepartmentCity, Sum
+-- from department
+-- inner join client
+-- inner join application
+-- on department.idDepartment = Department_idDepartment and
+-- client.idClient = Client_idClient
+-- where department.DepartmentCity = 'Lviv'and Sum > 5000;
+-- #22
+-- select Sum, c.idClient, c.FirstName, c.LastName
+-- from application a
+-- join client c on a.Client_idClient = c.idClient
+-- where CreditState = 'Returned' and Sum > 5000
+-- group by idClient;
+-- #23
+-- select max(Sum) from application where CreditState = 'Not returned';
+-- #24
+-- select min(Sum) as MinimalSum, c.idClient, c.FirstName, c.LastName
+-- from application a
+-- join client c on a.Client_idClient = c.idClient
+-- group by idClient
+-- order by MinimalSum limit 1;
+-- #25
+-- select * from application where Sum > (select avg(Sum) from application);
+-- #26
+-- select distinct idClient,
+-- FirstName,
+-- LastName,
+-- Education,
+-- Passport,
+-- City,
+-- Age,
+-- Department_idDepartment,
+-- Client_idClient
+-- from client
+-- join application on client.idClient = application.Client_idClient
+-- where client.City like (select City
+-- from client
+-- group by idClient
+-- order by count(idApplication) desc
+-- limit 1);
+-- #27
+-- select count(idApplication) as MaxCount, c.City
+-- from application a
+-- join client c on a.Client_idClient = c.idClient
+-- group by Client_idClient
+-- order by MaxCount desc limit 1;
