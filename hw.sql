@@ -12,7 +12,8 @@
 -- select * from bank.client inner join bank.department d on 
 -- bank.client.Department_idDepartment = d.idDepartment
 -- where DepartmentCity = 'kyiv';
--- #7 ?????
+-- #7 
+-- select distinct FirstName from client;
 -- #8
 -- select firstname, lastname, passport, city, age, application.sum 
 -- from bank.client join bank.application on 
